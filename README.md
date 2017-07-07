@@ -1,9 +1,9 @@
 
 Our project consists of 3 parts
 ===
-1-Product Addition
-2-Product List
-3-Product Ordering 
+* Product Addition
+* Product List
+* Product Ordering 
 
 
 1-Product Addition
