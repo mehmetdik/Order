@@ -1,0 +1,101 @@
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Add products</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form" action="{{ path("addProduct") }}" method="post">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Name</label>
+                            <input type="text" class="form-control" name="ProductName" placeholder="Product Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-control select2" name="Category[]" multiple="multiple" data-placeholder="Select a Category" style="width: 100%;">
+                                {% for category in categories %}
+                                    <option>{{ category.name|default("") }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.box -->
+
+
+
+
+        </div>
+        <!--/.col (left) -->
+
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+{% set Sn=1 %}
+                {% for category in categories %}
+
+
+                    <!-- Main content -->
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">{{ category.name|default("") }}</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 10px">Sn</th>
+                                                <th>Name</th>
+                                                <th style="width: 40px"></th>
+                                            </tr>
+                                            {% for productCategory in productCategories %}
+                                                {% if category==productCategory.category %}
+                                                    <tr>
+                                                        <td>{{ Sn }}</td>
+                                                        <td>{{ productCategory.product.name|default("") }}</td>
+                                                        <td>
+                                                            <button type="button" onclick="orderclk({{ productCategory.product.id }})" class="btn btn-block btn-success btn-sm">Order</button></td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+
+
+                                        </table>
+                                    </div>
+                                    <!-- /.box-body -->
+                                    <div class="box-footer clearfix">
+                                        <ul class="pagination pagination-sm no-margin pull-right">
+                                            <li><a href="#">&laquo;</a></li>
+                                            <li><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">&raquo;</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /.box -->
+
+
+                            </div>
+
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                {% endfor %}
